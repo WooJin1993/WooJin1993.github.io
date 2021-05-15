@@ -19,45 +19,44 @@ toc_label: "목차"
 
 ## Code Chunk 만드는 방법 + 단축키
 
-시작하기에 앞서, Rmd 파일에서 Knit하여 나온 파일은 **보고서**라는 단어로 통일하자.  
-아래 그림에서 볼 수 있듯이 Code Chunk는 Rmd 파일에서 음영처리되어 Markdown Text와 구분된다.  
-Code Chunk를 만드는 방법은 **Markdown에서 코드 블럭을 만드는 방법과 유사**하다. 즉, ` ```{r} ` 와 ` ``` ` 를 코드 위 아래에 감싸주면 Code Chunk가 된다.  
-또한, 단축키  `Ctrl + Alt + I` 를 눌러서 Code Chunk를 빠르게 삽입할 수 있다. 참고로 이 단축키는 R Script 파일에선 작동이 안되고 R Markdown 파일에서만 작동된다.  
+<p>시작하기에 앞서, Rmd 파일에서 Knit하여 나온 파일은 **보고서**라는 단어로 통일하자.<br>
+아래 그림에서 볼 수 있듯이 Code Chunk는 Rmd 파일에서 음영처리되어 Markdown Text와 구분된다.<br>
+Code Chunk를 만드는 방법은 <b>Markdown에서 코드 블럭을 만드는 방법과 유사</b>하다. 즉, <code>```{r}</code> 와 <code>```</code>를 코드 위 아래에 감싸주면 Code Chunk가 된다.<br>
+또한, 단축키 <code>Ctrl + Alt + I</code> 를 눌러서 Code Chunk를 빠르게 삽입할 수 있다.<br>
+참고로 이 단축키는 R Script 파일에선 작동이 안되고 R Markdown 파일에서만 작동된다.</p>
 
 ![three_components](/assets/images/three_components.png)
 
-### Code Chunk 실행
+## Code Chunk 실행
 
 Code Chunk 안의 코드를 실행하는 방법은 R Script 안의 코드를 실행하는 방법과 같다.  
 즉, 한 줄씩 실행하려면 `Ctrl + Enter` 를 누르면 되고 Code Chunk 안의 코드 전체를 실행하려면 `Ctrl + Shift + Enter` 또는 Code Chunk 우측 상단의 톱니바퀴 옆 화살표 버튼을 누르면 된다.
 
-### Code Chunk 이름
+## Code Chunk 이름
 
-**R - 기본 개념** 글에서 변수에 대해서 배웠다.  
-각 변수는 다른 이름을 가지고 있어서 서로 구분이 되는 것이 특징이다.  
-변수처럼 Code Chunk도 서로 구분을 할 수 있게 이름을 붙일 수 있다.  
-이렇게 이름을 붙이면 Knit하는 과정에서 오류가 났을 때 어느 Code Chunk에서 그 오류가 생겼는지 빠르게 판단할 수 있다는 장점이 있다.  
-단, Code Chunk에 이름을 붙이지 않아도 정상적으로 Knit가 되지만 같은 이름의 Code Chunk가 있으면 Knit가 안되니 주의해야 한다.  
-Code Chunk에 이름을 붙이는 방법은 다음과 같다.  
-` ```{r chunk_name}` 와 ` ``` ` 를 코드 위 아래에 감싸준다.  
-첫 번째 ` ``` ` 다음에 `{r}` 이 아닌 `{r chunk_name}` 이 온다는 점에서 Code Chunk를 만드는 것과 구별된다. 
+<p><b>R - 기본 개념</b> 글에서 변수에 대해서 배웠다.<br>
+각 변수는 다른 이름을 가지고 있어서 서로 구분이 되는 것이 특징이다.<br>
+변수처럼 Code Chunk도 서로 구분을 할 수 있게 이름을 붙일 수 있다.<br>
+이렇게 이름을 붙이면 Knit하는 과정에서 오류가 났을 때 어느 Code Chunk에서 그 오류가 생겼는지 빠르게 판단할 수 있다는 장점이 있다.<br>
+단, Code Chunk에 이름을 붙이지 않아도 정상적으로 Knit가 되지만 같은 이름의 Code Chunk가 있으면 Knit가 안되니 주의해야 한다.<br>
+Code Chunk에 이름을 붙이는 방법은 다음과 같다.<br>
+<code>```{r chunk_name}`</code>와 <code>```</code>를 코드 위 아래에 감싸준다.<br>
+첫 번째 <code>```</code> 다음에 <code>{r}</code>이 아닌 <code>{r chunk_name}</code>이 온다는 점에서 Code Chunk를 만드는 것과 구별된다.</p>
 
- 
+## Code Chunk 옵션
 
-### Code Chunk 옵션
+<p>R을 전혀 모르는 사람 앞에서 발표할 때 보고서에 있는 R Code는 오히려 발표에 방해가 될 수 있기에 R Code만 보고서에 빼야 하는 상황이 있다.<br>
+또는 Code Chunk를 보여주기만 하고 실행은 하지 않도록 Code만을 출력해야 하는 상황이 있다.<br>
+이러한 경우엔 Code Chunk에 옵션을 추가하면 된다.<br>
+즉, Code Chunk에 여러 옵션들을 추가하여 다양한 형태의 보고서를 만들 수 있다.<br>
+Code Chunk에 옵션을 추가하는 방법은 다음과 같다.<br>
+첫 번째 <code>```</code> 다음에 <code>{r}</code> 이 아닌 <code>{r, key=value1, key2=value2, ...}</code> 을 작성한다.<br>
+다시 말하자면 <code>```{r, key1=value1, key2=value2, ...}</code> 와 <code>```</code>를 코드 위 아래에 감싸준다.<br>
+얼핏 보기엔 Code Chunk에 이름을 붙이는 방법과 같은 것처럼 보이지만 다른 점은 쉼표(<code>,</code>)로 각 옵션을 구분한다는 것이다.<br>
+참고로 옵션을 추가하는 것은 함수의 argument를 넣는 것과 같은 형태이다.<br><br>
+이제 본격적으로 Code Chunk에 어떤 옵션들이 있는지 하나씩 예를 들어가며 알아보자.</p>
 
-R을 전혀 모르는 사람 앞에서 발표할 때 보고서에 있는 R Code는 오히려 발표에 방해가 될 수 있기에 R Code만 보고서에 빼야 하는 상황이 있다.  
-또는 Code Chunk를 보여주기만 하고 실행은 하지 않도록 Code만을 출력해야 하는 상황이 있다.  
-이러한 경우엔 Code Chunk에 옵션을 추가하면 된다.  
-즉, Code Chunk에 여러 옵션들을 추가하여 다양한 형태의 보고서를 만들 수 있다.  
-Code Chunk에 옵션을 추가하는 방법은 다음과 같다.  
-첫 번째 ` ``` ` 다음에 `{r}` 이 아닌 `{r, key=value1, key2=value2, ...}` 을 작성한다. 다시 말하자면  ` ```{r, key1=value1, key2=value2, ...}` 와 ` ``` ` 를 코드 위 아래에 감싸준다.  
-얼핏 보기엔 Code Chunk에 이름을 붙이는 방법과 같은 것처럼 보이지만 다른 점은 쉼표(`,`)로 각 옵션을 구분한다는 것이다.  
-참고로 옵션을 추가하는 것은 함수의 argument를 넣는 것과 같은 형태이다.  
-
-이제 본격적으로 Code Chunk에 어떤 옵션들이 있는지 하나씩 예를 들어가며 알아보자.
-
-#### 1. `eval=FALSE`: 코드를 실행하지 않고 코드 블럭만 보고서에 보여주고 싶은 경우
+1. `eval=FALSE`: 코드를 실행하지 않고 코드 블럭만 보고서에 보여주고 싶은 경우
 
 (Rmd에서 `eval=FALSE` 설정을 안 한 경우)
 
@@ -93,7 +92,7 @@ print("Welcome to my blog.")
 print("Welcome to my blog.")
 ```
 
-#### 2. `include=FALSE`: 코드를 실행하지만 그에 따른 모든 결과물(코드블럭, 출력값, 플롯, 메시지, 경고문 등)을 보고서에 보여주고 싶지 않은 경우
+2. `include=FALSE`: 코드를 실행하지만 그에 따른 모든 결과물(코드블럭, 출력값, 플롯, 메시지, 경고문 등)을 보고서에 보여주고 싶지 않은 경우
 
 (Rmd에서 `include=FALSE` 설정을 안 한 경우)
 
@@ -139,7 +138,7 @@ library(tidyverse)
 
 (보고서에 아무 것도 출력되지 않고 `tidyverse` 라는 패키지가 Rmd 내에서 실행된다.)
 
-#### 3. `echo=FALSE`: 코드를 보여주지 않은 채 실행하여 그 결과물만 보고서에 보여주고 싶은 경우
+3. `echo=FALSE`: 코드를 보여주지 않은 채 실행하여 그 결과물만 보고서에 보여주고 싶은 경우
 
 - 코드 블럭만 출력되지 않는다.
 
@@ -175,7 +174,7 @@ print("Welcome to my blog.")
 [1] "Welcome to my blog."
 ```
 
-#### 4. `results="hide"`: 코드를 실행하여 나오는 출력물을 보고서에 보여주고 싶지 않은 경우
+4. `results="hide"`: 코드를 실행하여 나오는 출력물을 보고서에 보여주고 싶지 않은 경우
 
 - `eval=FALSE` 는 코드를 실행하지 않는 옵션이고 `results="hide"` 는 코드를 실행하지만 출력물을 보여주지 않는 것이다.
 
@@ -211,7 +210,7 @@ print("Welcome to my blog.")
 print("Welcome to my blog.")
 ```
 
-#### 5. `fig.show="hide"`: 코드를 실행하여 나오는 그림을 보고서에 보여주고 싶지 않은 경우
+5. `fig.show="hide"`: 코드를 실행하여 나오는 그림을 보고서에 보여주고 싶지 않은 경우
 
 (Rmd에서 `results="hide"` 설정을 안 한 경우)
 
@@ -238,7 +237,7 @@ hist(rnorm(10))
 
 (히스토그램이 출력되지 않는다.)
 
-#### 6. `message=FALSE`: 코드를 실행하여 나오는 모든 메시지를 보고서에 보여주고 싶지 않은 경우
+6. `message=FALSE`: 코드를 실행하여 나오는 모든 메시지를 보고서에 보여주고 싶지 않은 경우
 
 - 패키지 로드할 때 나오는 메시지를 출력하고 싶지 않은 경우, 이 옵션을 사용한다.
 
@@ -288,7 +287,7 @@ library(tidyverse)
 library(tidyverse)
 ```
 
-#### 7. `warning=FALSE`: 코드를 실행하여 나오는 모든 경고문을 보고서에 보여주고 싶지 않은 경우
+7. `warning=FALSE`: 코드를 실행하여 나오는 모든 경고문을 보고서에 보여주고 싶지 않은 경우
 
 (Rmd에서 `warning=FALSE` 설정을 안 한 경우)
 
@@ -337,7 +336,7 @@ Option	             |Run code|Show code|Output|Plots   |Messages|Warnings
 
  
 
-#### 전역 옵션 (Global option)
+### 전역 옵션 (Global option)
 
 마지막으로 전역 옵션에 대해서 알아보자.  
 전역 옵션은 말 그대로 Code Chunk 하나하나 옵션을 지정하기 힘들 때 모든 Code Chunk에 적용되는 옵션(default option)을 지정하는 것이다.  
@@ -348,7 +347,6 @@ Rmd 파일의 YAML Header 바로 아래에 `knitr::opts_chunk$set()` 라는 코�
 (젼역 옵션 예시)
 
 1. 코드 이름: `setup`
-
 2. 전역 옵션: `echo=TRUE` and `error=TRUE`
 
 ````
