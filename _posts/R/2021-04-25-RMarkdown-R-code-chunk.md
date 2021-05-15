@@ -40,7 +40,7 @@ Code Chunk 안의 코드를 실행하는 방법은 R Script 안의 코드를 실
 이렇게 이름을 붙이면 Knit하는 과정에서 오류가 났을 때 어느 Code Chunk에서 그 오류가 생겼는지 빠르게 판단할 수 있다는 장점이 있다.<br>
 단, Code Chunk에 이름을 붙이지 않아도 정상적으로 Knit가 되지만 같은 이름의 Code Chunk가 있으면 Knit가 안되니 주의해야 한다.<br>
 Code Chunk에 이름을 붙이는 방법은 다음과 같다.<br>
-<code>```{r chunk_name}`</code>와 <code>```</code>를 코드 위 아래에 감싸준다.<br>
+<code>```{r chunk_name}</code>와 <code>```</code>를 코드 위 아래에 감싸준다.<br>
 첫 번째 <code>```</code> 다음에 <code>{r}</code>이 아닌 <code>{r chunk_name}</code>이 온다는 점에서 Code Chunk를 만드는 것과 구별된다.</p>
 
 ## Code Chunk 옵션
@@ -56,7 +56,7 @@ Code Chunk에 옵션을 추가하는 방법은 다음과 같다.<br>
 참고로 옵션을 추가하는 것은 함수의 argument를 넣는 것과 같은 형태이다.<br><br>
 이제 본격적으로 Code Chunk에 어떤 옵션들이 있는지 하나씩 예를 들어가며 알아보자.</p>
 
-1. `eval=FALSE`: 코드를 실행하지 않고 코드 블럭만 보고서에 보여주고 싶은 경우
+(1) `eval=FALSE`: 코드를 실행하지 않고 코드 블럭만 보고서에 보여주고 싶은 경우
 
 (Rmd에서 `eval=FALSE` 설정을 안 한 경우)
 
@@ -92,7 +92,7 @@ print("Welcome to my blog.")
 print("Welcome to my blog.")
 ```
 
-2. `include=FALSE`: 코드를 실행하지만 그에 따른 모든 결과물(코드블럭, 출력값, 플롯, 메시지, 경고문 등)을 보고서에 보여주고 싶지 않은 경우
+(2) `include=FALSE`: 코드를 실행하지만 그에 따른 모든 결과물(코드블럭, 출력값, 플롯, 메시지, 경고문 등)을 보고서에 보여주고 싶지 않은 경우
 
 (Rmd에서 `include=FALSE` 설정을 안 한 경우)
 
@@ -138,7 +138,7 @@ library(tidyverse)
 
 (보고서에 아무 것도 출력되지 않고 `tidyverse` 라는 패키지가 Rmd 내에서 실행된다.)
 
-3. `echo=FALSE`: 코드를 보여주지 않은 채 실행하여 그 결과물만 보고서에 보여주고 싶은 경우
+(3) `echo=FALSE`: 코드를 보여주지 않은 채 실행하여 그 결과물만 보고서에 보여주고 싶은 경우
 
 - 코드 블럭만 출력되지 않는다.
 
@@ -174,7 +174,7 @@ print("Welcome to my blog.")
 [1] "Welcome to my blog."
 ```
 
-4. `results="hide"`: 코드를 실행하여 나오는 출력물을 보고서에 보여주고 싶지 않은 경우
+(4) `results="hide"`: 코드를 실행하여 나오는 출력물을 보고서에 보여주고 싶지 않은 경우
 
 - `eval=FALSE` 는 코드를 실행하지 않는 옵션이고 `results="hide"` 는 코드를 실행하지만 출력물을 보여주지 않는 것이다.
 
@@ -210,7 +210,7 @@ print("Welcome to my blog.")
 print("Welcome to my blog.")
 ```
 
-5. `fig.show="hide"`: 코드를 실행하여 나오는 그림을 보고서에 보여주고 싶지 않은 경우
+(5) `fig.show="hide"`: 코드를 실행하여 나오는 그림을 보고서에 보여주고 싶지 않은 경우
 
 (Rmd에서 `results="hide"` 설정을 안 한 경우)
 
@@ -237,7 +237,7 @@ hist(rnorm(10))
 
 (히스토그램이 출력되지 않는다.)
 
-6. `message=FALSE`: 코드를 실행하여 나오는 모든 메시지를 보고서에 보여주고 싶지 않은 경우
+(6) `message=FALSE`: 코드를 실행하여 나오는 모든 메시지를 보고서에 보여주고 싶지 않은 경우
 
 - 패키지 로드할 때 나오는 메시지를 출력하고 싶지 않은 경우, 이 옵션을 사용한다.
 
@@ -287,7 +287,7 @@ library(tidyverse)
 library(tidyverse)
 ```
 
-7. `warning=FALSE`: 코드를 실행하여 나오는 모든 경고문을 보고서에 보여주고 싶지 않은 경우
+(7) `warning=FALSE`: 코드를 실행하여 나오는 모든 경고문을 보고서에 보여주고 싶지 않은 경우
 
 (Rmd에서 `warning=FALSE` 설정을 안 한 경우)
 
@@ -326,13 +326,13 @@ character 타입을 numeric 타입으로 바꾸면 경고 메시지가 출력되
 
 Option	             |Run code|Show code|Output|Plots   |Messages|Warnings 
 ------------------- |-----------|----------|----------|-------|-----------|----------
-`eval = FALSE`       |	x            |	              |     x       | x        | x	         | x
-`include = FALSE`  |	              | 	  x  |     x       | x        | x              | x
-`echo = FALSE`      |               |	x	      |             |           |                 |
-`results = "hide"`   |               |               |	x          |           |                 |
-`fig.show = "hide"`|               |               |              | x    	|                 |
-`message = FALSE`|               |               |              |          | x               |
-`warning = FALSE` |               |               |              |          |                  | x
+`eval=FALSE`       |	x            |	              |     x       | x        | x	         | x
+`include=FALSE`  |	              | 	  x  |     x       | x        | x              | x
+`echo=FALSE`      |               |	x	      |             |           |                 |
+`results="hide"`   |               |               |	x          |           |                 |
+`fig.show="hide"`|               |               |              | x    	|                 |
+`message=FALSE`|               |               |              |          | x               |
+`warning=FALSE` |               |               |              |          |                  | x
 
  
 
@@ -357,19 +357,19 @@ knitr::opts_chunk$set(echo = TRUE, error = TRUE)
 
 ### 인라인 Code Chunk
 
-**R Markdown - Markdown** 포스트에서 인라인 코드에 대해서 배웠다.  
-인라인 코드는 Markdown Text에서 코드 모습을 한 텍스트를 의미한다.  
-인라인 Code Chunk는 코드 모습을 한 텍스트인 인라인 코드와 단어가 비슷해서 동의어라고 착각할 수 있다.  
-하지만 그 의미는 다르다. **인라인 Code Chunk**는 Markdown Text에서 R Code가 실행된 결과를 텍스트로 보여준다.  
-그렇다면 인라인 Code Chunk는 언제 사용할까?  
-Rmd 파일 내에서 Markdown Text와 R Code Chunk는 구분되어 있어서 R Code 실행은 R Code Chunk에서만 할 수 있다.  
-Markdown Text에서 R Code가 실행된 결과를 문장 안에 삽입하고 싶을 때가 있다.  
-예를 들어, 보고서에서 다루고 있는 데이터의 행과 열의 개수를 설명할 때 직접 값을 구하여 숫자로 적는 방법이 있지만 분석을 하다보면 데이터는 자주 변형되기 때문에 데이터의 행과 열의 개수도 변할 때가 많다.  
-그럴 때마다 직접 값을 구하여 숫자로 적으면 실수하기 쉽고 귀찮은 일이다.  
-이 때 인라인 Code Chunk를 사용하면 쉽게 해결된다.  
-인라인 Code Chunk를 사용하는 방법은 인라인 코드와 유사하다.  
-차이점은 ` ``` `  와 ` ``` ` 로 R Code를 감싸주는 게 아니라 `` `r `` 와 `` ` `` 로 R Code를 감싸줘야 한다.  
-예를 들어,
+<p><b>R Markdown - Markdown</b> 포스트에서 인라인 코드에 대해서 배웠다.<br>
+인라인 코드는 Markdown Text에서 코드 모습을 한 텍스트를 의미한다.<br>
+인라인 Code Chunk는 코드 모습을 한 텍스트인 인라인 코드와 단어가 비슷해서 동의어라고 착각할 수 있다.<br>
+하지만 그 의미는 다르다. <b>인라인 Code Chunk</b>는 Markdown Text에서 R Code가 실행된 결과를 텍스트로 보여준다.<br>
+그렇다면 인라인 Code Chunk는 언제 사용할까?<br>
+Rmd 파일 내에서 Markdown Text와 R Code Chunk는 구분되어 있어서 R Code 실행은 R Code Chunk에서만 할 수 있다.<br>
+Markdown Text에서 R Code가 실행된 결과를 문장 안에 삽입하고 싶을 때가 있다.<br>
+예를 들어, 보고서에서 다루고 있는 데이터의 행과 열의 개수를 설명할 때 직접 값을 구하여 숫자로 적는 방법이 있지만 분석을 하다보면 데이터는 자주 변형되기 때문에 데이터의 행과 열의 개수도 변할 때가 많다.<br>
+그럴 때마다 직접 값을 구하여 숫자로 적으면 실수하기 쉽고 귀찮은 일이다.<br>
+이 때 인라인 Code Chunk를 사용하면 쉽게 해결된다.<br>
+인라인 Code Chunk를 사용하는 방법은 인라인 코드와 유사하다.<br>
+차이점은 <code>```</code>와 <code>```</code>로 R Code를 감싸주는 게 아니라 <code>`r</code> 와 <code>`</code>로 R Code를 감싸줘야 한다.<br>
+예를 들어,</p>
 
 ```
 원주율을 소수점 아래 4 번째 숫자까지 반올림하여 나타내면 `r round(pi, 4)` 이다.  
