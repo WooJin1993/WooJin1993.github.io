@@ -19,7 +19,7 @@ toc_label: "목차"
 
 ## Code Chunk 만드는 방법 + 단축키
 
-<p>시작하기에 앞서, Rmd 파일에서 Knit하여 나온 파일은 **보고서**라는 단어로 통일하자.<br>
+<p>시작하기에 앞서, Rmd 파일에서 Knit하여 나온 파일은 <b>보고서</b>라는 단어로 통일하자.<br>
 아래 그림에서 볼 수 있듯이 Code Chunk는 Rmd 파일에서 음영처리되어 Markdown Text와 구분된다.<br>
 Code Chunk를 만드는 방법은 <b>Markdown에서 코드 블럭을 만드는 방법과 유사</b>하다. 즉, <code>```{r}</code> 와 <code>```</code>를 코드 위 아래에 감싸주면 Code Chunk가 된다.<br>
 또한, 단축키 <code>Ctrl + Alt + I</code> 를 눌러서 Code Chunk를 빠르게 삽입할 수 있다.<br>

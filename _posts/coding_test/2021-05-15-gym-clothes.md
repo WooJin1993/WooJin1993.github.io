@@ -1,5 +1,5 @@
 ---
-title: "체육복"
+title: "[프로그래머스] 체육복"
 categories: 
     - 코딩테스트
 tags: 
