@@ -302,12 +302,12 @@ Markdown 문법으론 이미지의 크기를 조절할 수 없습니다.
 대신, **HTML의 img 태그의 width와 height 속성**을 이용해서 이미지의 크기를 조절할 수 있습니다.
 
 ```
-<img src="https://i.pinimg.com/originals/f9/b7/0d/f9b70ddb4020a87967355d74b2247163.jpg" width="450px" height="300px" alt="cat"></img>
+<img src="https://i.pinimg.com/originals/f9/b7/0d/f9b70ddb4020a87967355d74b2247163.jpg" width="450px" height="300px" alt="cat">
 ```
 
 (출력 결과)
 
-<img src="https://i.pinimg.com/originals/f9/b7/0d/f9b70ddb4020a87967355d74b2247163.jpg" width="450px" height="300px" alt="cat"></img>
+<img src="https://i.pinimg.com/originals/f9/b7/0d/f9b70ddb4020a87967355d74b2247163.jpg" width="450px" height="300px" alt="cat">
 
 ### 8. 표 (Table)
 
