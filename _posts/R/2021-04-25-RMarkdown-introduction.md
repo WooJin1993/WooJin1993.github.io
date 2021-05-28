@@ -1,7 +1,7 @@
 ---
 title: "[RMarkdown] 소개"
 categories: 
-    - RStudio
+    - RMarkdown
 tags:
     - R
     - RMarkdown

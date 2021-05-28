@@ -1,7 +1,7 @@
 ---
 title: "[RMarkdown] R Code Chunk"
 categories: 
-    - RStudio
+    - RMarkdown
 tags:
     - R
     - RMarkdown

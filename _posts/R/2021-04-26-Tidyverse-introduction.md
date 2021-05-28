@@ -1,7 +1,7 @@
 ---
 title: "[Tidyverse] 소개"
 categories: 
-    - RStudio
+    - Tidyverse
 tags:
     - R
     - Tidyverse

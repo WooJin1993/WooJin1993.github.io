@@ -1,7 +1,7 @@
 ---
 title: "[RMarkdown] YAML Header"
 categories: 
-    - RStudio
+    - RMarkdown
 tags:
     - R
     - RMarkdown
