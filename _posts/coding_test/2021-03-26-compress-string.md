@@ -5,6 +5,8 @@ categories:
 tags: 
     - 프로그래머스
     - 완전탐색
+    - 구현
+    - 문자열
 toc: true
 toc_sticky: true
 toc_label: "목차"
@@ -40,26 +42,26 @@ toc_label: "목차"
 
 ## 입출력 예 설명
 
-- 입출력 예 #1
+### 입출력 예 #1
 
 문자열을 1개 단위로 잘라 압축했을 때 가장 짧습니다.
 
-입출력 예 #2
+### 입출력 예 #2
 
 문자열을 8개 단위로 잘라 압축했을 때 가장 짧습니다.
 
-- 입출력 예 #3
+### 입출력 예 #3
 
 문자열을 3개 단위로 잘라 압축했을 때 가장 짧습니다.
 
-- 입출력 예 #4
+### 입출력 예 #4
 
 문자열을 2개 단위로 자르면 `"abcabcabcabc6de"` 가 됩니다.  
 문자열을 3개 단위로 자르면 `"4abcdededededede"` 가 됩니다.  
 문자열을 4개 단위로 자르면 `"abcabcabcabc3dede"` 가 됩니다.  
 문자열을 6개 단위로 자를 경우 `"2abcabc2dedede"`가 되며, 이때의 길이가 14로 가장 짧습니다.
 
-- 입출력 예 #5
+### 입출력 예 #5
 
 문자열은 제일 앞부터 정해진 길이만큼 잘라야 합니다.  
 따라서 주어진 문자열을 x / ababcdcd / ababcdcd 로 자르는 것은 불가능 합니다.  
@@ -70,16 +72,14 @@ toc_label: "목차"
 ```python
 from itertools import groupby
 
-# 압축 단위가 n일 때, 압축된 문자열의 길이를 반환하는 함수
-def get_compressed_str_len(s, n):
+# 압축 단위가 n일 때, 압축된 문자열의 길이(compressed string length)를 반환하는 함수
+def get_comp_str_len(s, n):
     splited_str_list = []    # 문자열 s를 n개 단위로 자른 문자열들을 저장한 배열
     compressed_str_list = [] # 압축된 문자열을 저장한 배열
-    pointer = 0
     
-    while pointer <= len(s):
-        splited_str_list.append(s[pointer:pointer + n])
-        pointer += n
-    
+    for i in range(0, len(s), n):
+        splited_str_list.append(s[i:i + n])
+
     """
     groupby()를 이용해 연속된 문자열의 개수를 구할 수 있음
     """
@@ -101,8 +101,8 @@ def solution(s):
     # 압축 단위는 1부터 (len(s) // 2)까지
     result_list = []
     
-    for i in range(1, (len(s) // 2) + 1):
-        result_list.append(get_compressed_str_len(s, i))
+    for i in range(1, (len(s)//2) + 1):
+        result_list.append(get_comp_str_len(s, i))
         
     return min(result_list)
 ```
