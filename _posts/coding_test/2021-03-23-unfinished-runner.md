@@ -10,6 +10,10 @@ toc_sticky: true
 toc_label: "목차"
 ---
 
+## 문제 링크
+
+<https://programmers.co.kr/learn/courses/30/lessons/42576>
+
 ## 문제 설명
 
 수많은 마라톤 선수들이 마라톤에 참여하였습니다.  
@@ -27,28 +31,28 @@ toc_label: "목차"
 
 |participant|compeletion|return|
 |-----------|-----------|------|
-|`["leo", "kiki", "eden"]`|`["eden", "kiki"]`|`"leo"`|
-|`["marina", "josipa", "nikola", "vinko", "filipa"]`|`["josipa", "filipa", "marina", "nikola"]`|`"vinko"`|
-|`["mislav", "stanko", "mislav", "ana"]`|`["stanko", "ana", "mislav"]`|`"mislav"`|
+|["leo", "kiki", "eden"]|["eden", "kiki"]|"leo"|
+|["marina", "josipa", "nikola", "vinko", "filipa"]|["josipa", "filipa", "marina", "nikola"]|"vinko"|
+|["mislav", "stanko", "mislav", "ana"]|["stanko", "ana", "mislav"]|"mislav"|
 
 ## 입출력 예 설명
 
-- 예제 #1
+### 입출력 예 #1
 
 "leo"는 참여자 명단에는 있지만, 완주자 명단에는 없기 때문에 완주하지 못했습니다.
 
-- 예제 #2
+### 입출력 예 #2
 
 "vinko"는 참여자 명단에는 있지만, 완주자 명단에는 없기 때문에 완주하지 못했습니다.
 
-- 예제 #3
+### 입출력 예 #3
 
 "mislav"는 참여자 명단에는 두 명이 있지만, 완주자 명단에는 한 명밖에 없기 때문에 한명은 완주하지 못했습니다.
 
 ## 풀이 1
 
-`collections` 모듈의 `Counter` 함수를 사용합니다.  
-`Counter`는 iterable 객체 안의 각 원소의 개수를 나타내는 클래스를 반환하는 함수입니다.  
+`collections` 모듈의 `Counter` 클래스를 사용합니다.  
+`Counter`는 iterable 객체 안의 각 원소의 개수를 나타내는 클래스입니다.  
 `Counter` 클래스는 덧셈과 뺄셈 연산이 가능하며, 이 문제의 경우에는 뺄셈을 사용합니다.  
 뺄셈을 통해, 완주하지 못한 선수의 이름을 구할 수 있습니다.  
 아래의 코드에서 `result_dict`는 `{선수이름: 1}`과 같이 사전 형식의 객체이기 때문에 `result_dict`의 `key`를 반환해야 합니다.
@@ -64,9 +68,10 @@ def solution(participant, completion):
 
 ## 풀이 2
 
-`participant`과 `completion`을 `sort` 후, `zip` 함수로 두 리스트에서 같은 위치의 원소들을 비교합니다.  
+`participant`과 `completion`을 정렬한 후, `zip` 함수로 두 리스트에서 같은 위치의 원소들을 비교합니다.  
 두 원소가 서로 다르다면, 참여자 명단에 있지만 완주자 명단에는 없는 사람이므로 그 값을 반환합니다.  
-만약 두 원소가 전부 같다면, 참여자 명단의 제일 끝에 있는 값을 반환합니다.  
+만약 두 원소가 전부 같다면, 참여자 명단의 제일 끝에 있는 사람이 완주자 명단에 없는 유일한 사람입니다.  
+따라서, 참여자 명단의 제일 끝에 있는 값을 반환합니다.  
 (참고: `completion`의 길이는 `participant`의 길이보다 1 작습니다.)
 
 ```python
