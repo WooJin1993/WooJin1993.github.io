@@ -1,9 +1,10 @@
 ---
-title: "[프로그래머스] 완주하지 못한 선수"
+title: "[프로그래머스][파이썬] 완주하지 못한 선수"
 categories: 
     - 코딩테스트
 tags: 
     - 프로그래머스
+    - 파이썬
     - 해시
 toc: true
 toc_sticky: true
