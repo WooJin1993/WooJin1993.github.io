@@ -1,9 +1,11 @@
 ---
-title: "[프로그래머스] 문자열 압축"
+title: "[프로그래머스][파이썬] 문자열 압축"
 categories: 
     - 코딩테스트
 tags: 
     - 프로그래머스
+    - 파이썬
+    - 카카오
     - 완전탐색
     - 구현
     - 문자열
@@ -11,6 +13,10 @@ toc: true
 toc_sticky: true
 toc_label: "목차"
 ---
+
+## 문제 링크
+
+<https://programmers.co.kr/learn/courses/30/lessons/60057>
 
 ## 문제 설명
 
@@ -34,11 +40,11 @@ toc_label: "목차"
 
 |s|return|
 |-|------|
-|`"aabbaccc"`|`7`|
-|`"ababcdcdababcdcd"`|`9`|
-|`"abcabcdede"`|`8`|
-|`"abcabcabcabcdededededede"`|`14`|
-|`"xababcdcdababcdcd"`|`17`|
+|"aabbaccc"|7|
+|"ababcdcdababcdcd"|9|
+|"abcabcdede"|8|
+|"abcabcabcabcdededededede"|14|
+|"xababcdcdababcdcd"|17|
 
 ## 입출력 예 설명
 
@@ -69,29 +75,82 @@ toc_label: "목차"
 
 ## 풀이
 
+```
+1. 압축할 문자열을 주어진 단위만큼 잘라서 배열 splited_str_list에 할당한다.
+2. 함수 groupby를 이용해 splited_str_list에서 연속된 문자열의 개수를 구한다.
+3. 압축한 문자열을 comp_str_list에 할당한다.
+4. comp_str_list를 하나의 문자열로 변환하여 그 문자열의 길이를 구한다.
+5. 주어진 단위를 1부터 len(s) // 2까지 바꿔가며 1~4를 반복한다.
+6. 5에서 나온 값들의 최솟값을 구한다.
+------------------------------------------------------
+압축할 문자열: "aabbaccc"
+
+(1개 단위) 
+splited_str_list = ["a", "a", "b", "b", "a", "c", "c", "c"]
+--groupby-->
+key: "a", group: ("a", "a")
+key: "b", group: ("b", "b")
+key: "a", group: ("a")
+key: "c", group: ("c", "c", "c")
+->
+comp_str_list = ["2a", "2b", "a", "3c"]
+->
+압축된 문자열의 길이 =  7
+
+(2개 단위)
+splited_str_list = ["aa", "bb", "a", "cc", "c"]
+--groupby-->
+key: "aa", group: ("aa")
+key: "bb", group: ("bb")
+key: "a", group: ("a")
+key: "cc", group: ("cc")
+key: "c", group: ("c")
+->
+comp_str_list = ["aa", "bb", "a", "cc", "c"]
+->
+압축된 문자열의 길이 =  8
+
+(3개 단위)
+splited_str_list = ["aab", "bac", "cc"]
+--groupby-->
+key: "aab", group: ("aab")
+key: "bac", group: ("bac")
+key: "cc", group: ("cc")
+->
+comp_str_list = ["aab", "bac", "cc"]
+->
+압축된 문자열의 길이 =  8
+
+(4개 단위)
+splited_str_list = ["aabb", "accc"]
+--groupby-->
+key: "aabb", group: ("aabb")
+key: "accc", group: ("accc")
+->
+comp_str_list = ["aabb", "accc"]
+->
+압축된 문자열의 길이 =  8
+
+따라서, 압축된 문자열 중 가장 짧은 것의 길이는 7
+```
+
 ```python
 from itertools import groupby
 
 # 압축 단위가 n일 때, 압축된 문자열의 길이(compressed string length)를 반환하는 함수
 def get_comp_str_len(s, n):
-    splited_str_list = []    # 문자열 s를 n개 단위로 자른 문자열들을 저장한 배열
-    compressed_str_list = [] # 압축된 문자열을 저장한 배열
+    splited_str_list = [s[i:i + n] for i in range(0, len(s), n)] # 문자열 s를 n개 단위로 자른 문자열들을 저장한 배열
+    comp_str_list = []                                           # 압축된 문자열을 저장한 배열
     
-    for i in range(0, len(s), n):
-        splited_str_list.append(s[i:i + n])
-
-    """
-    groupby()를 이용해 연속된 문자열의 개수를 구할 수 있음
-    """
-    for x, group in groupby(splited_str_list):
+    for key, group in groupby(splited_str_list):
         group_len = len(list(group))
         
         if group_len == 1:
-            compressed_str_list.append(x)
+            comp_str_list.append(key)
         else:
-            compressed_str_list.append(f"{group_len}{x}")
+            comp_str_list.append(f"{group_len}{key}")
     
-    return sum(len(c) for c in compressed_str_list)
+    return len("".join(comp_str_list))
 
 def solution(s):
     # 예외 처리 (s의 길이가 1일 때)
