@@ -1,15 +1,21 @@
 ---
-title: "[프로그래머스] 프렌즈4블록"
+title: "[프로그래머스][파이썬] 프렌즈4블록"
 categories: 
     - 코딩테스트
 tags: 
     - 프로그래머스
+    - 파이썬
     - 카카오
     - 행렬
+    - 구현
 toc: true
 toc_sticky: true
 toc_label: "목차"
 ---
+
+## 문제 링크
+
+<https://programmers.co.kr/learn/courses/30/lessons/17679>
 
 ## 문제 설명
 
@@ -50,7 +56,7 @@ TMMTTJ
 ## 입력 형식
 
 - 입력으로 판의 높이 `m`, 폭 `n`과 판의 배치 정보 `board`가 들어온다.
-- 2 ≦ `n`, `m` ≦ 30
+- 2 ≦ n, m ≦ 30
 - `board`는 길이 `n`인 문자열 `m`개의 배열로 주어진다. 블록을 나타내는 문자는 대문자 A에서 Z가 사용된다.
 
 ## 출력 형식
@@ -71,9 +77,14 @@ TMMTTJ
 
 ## 풀이
 
+`check_block(board, i, j)`: `board[i][j]`, `board[i][j + 1]`, `board[i + 1][j]`, `board[i + 1][j + 1]`가 같은 모양의 블록인 경우면 `True` 아니면 `False`  
+`get_deleted_block(board, i, j)`: `board[i][j]`, `board[i][j + 1]`, `board[i + 1][j]`, `board[i + 1][j + 1]`가 같은 모양의 블록인 경우 해당하는 index를 집합에 담아서 반환  
+`get_lowered_block(board)`: 블록이 지워진 후 위에 있는 블록을 아래로 떨어뜨려 `board`의 빈 공간을 채워 반환  
+`get_deleted_board(m, n, board)`: 주어진 `board`에서 같은 모양의 2x2 블록을 다 지우고 나서 아래로 떨어뜨린 `board`를 반환
+
 ```python
 def check_block(board, i, j):
-    if board[i][j] == 0 or board[i][j + 1] == 0 or board[i + 1][j] == 0 or board[i + 1][j + 1] == 0:
+    if board[i][j] == "0":
         return False
     
     block_sum = board[i][j] + board[i][j + 1] + board[i + 1][j] + board[i + 1][j + 1]
@@ -89,13 +100,13 @@ def get_deleted_block(board, i, j):
     else:
         return set()
 
-def lower_block(board):
+def get_lowered_board(board):
     board_colwise = [list(b) for b in zip(*board)] 
     
     for col in board_colwise:
         for i, c in enumerate(col):
-            if c == 0:
-                col.insert(col.pop(i), 0)
+            if c == "0":
+                col.insert(0, col.pop(i))
     
     return [list(col) for col in zip(*board_colwise)]
 
@@ -107,9 +118,9 @@ def get_deleted_board(m, n, board):
             deleted_block.update(get_deleted_block(board, i, j))
     
     for i, j in deleted_block:
-        board[i][j] = 0
+        board[i][j] = "0"
     
-    board = lower_block(board)
+    board = get_lowered_board(board)
                 
     return board
 
@@ -118,7 +129,7 @@ def count_zeros(m, n, board):
     
     for i in range(m):
         for j in range(n):
-            if not board[i][j]:
+            if board[i][j] == "0":
                 result += 1
     
     return result
