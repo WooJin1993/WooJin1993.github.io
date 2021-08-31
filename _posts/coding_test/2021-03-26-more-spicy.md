@@ -1,14 +1,19 @@
 ---
-title: "[프로그래머스] 더 맵게"
+title: "[프로그래머스][파이썬] 더 맵게"
 categories: 
     - 코딩테스트
 tags: 
     - 프로그래머스
+    - 파이썬
     - 힙
 toc: true
 toc_sticky: true
 toc_label: "목차"
 ---
+
+## 문제 링크
+
+<https://programmers.co.kr/learn/courses/30/lessons/42626>
 
 ## 문제 설명
 
@@ -33,7 +38,7 @@ Leo가 가진 음식의 스코빌 지수를 담은 배열 `scoville`과 원하�
 
 |scoville|K|return|
 |--------|-|------|
-|`[1, 2, 3, 9, 10, 12]`|`7`|`2`|
+|[1, 2, 3, 9, 10, 12]|7|2|
 
 ## 입출력 예 설명
 
@@ -49,19 +54,27 @@ Leo가 가진 음식의 스코빌 지수를 담은 배열 `scoville`과 원하�
 
 ## 풀이
 
+모든 음식의 스코빌 지수가 K 이상이 될 때까지 스코빌 지수가 가장 낮은 두 개의 음식을 찾아 반복하여 섞어야 합니다.  
+이때 매 반복마다 정렬하는 것은 비효율적입니다.  
+따라서, `heapq` 모듈의 `heapify` 함수를 사용하여 `scoville`을 리스트에서 힙으로 만듭니다.  
+그런 다음, 힙 `scoville`의 가장 작은 원소(`scoville'[0]`)가 K 이상이 될 때까지 `scoville`의 가장 작은 두 원소를 섞습니다.  
+이때, `scoville`의 원소가 하나이면 가장 작은 두 원소를 섞을 수 없으므로 -1을 반환합니다.  
+힙 `scoville`의 가장 작은 원소(`scoville'[0]`)가 K 이상이면 while 문을 빠져 나와 섞어야 하는 최소 횟수(`cnt`)를 반환합니다.
+
 ```python
 from heapq import heapify, heappush, heappop
 
 def solution(scoville, K):
     heapify(scoville)
-    count = 0
+    cnt = 0
 
     while scoville[0] < K:
         try:
-            heappush(scoville, heappop(scoville) + heappop(scoville) * 2)
+            heappush(scoville, heappop(scoville) + heappop(scoville)*2)
         except IndexError:
             return -1
-        count += 1
 
-    return count
+        cnt += 1
+
+    return cnt
 ```
